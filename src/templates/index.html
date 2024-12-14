@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Resume Builder & Reviewer</title>
+  </head>
+  <body>
+    <header>
+      <nav id="navbar">
+        <ul class="nav-links">
+          <li class="nav-link"><a href="#welcome-section">Welcome</a></li>
+          <li class="nav-link"><a href="#projects_1">Builder</a></li>
+          <li class="nav-link"><a href="#projects_2">Reviewer</a></li>
+          <li class="nav-link"><a href="#contact">Contact me</a></li>
+        </ul>
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle" class="theme-toggle" onclick="toggleTheme()">🌙</button>
+      </nav>
+    </header>
+    
+    <section id="welcome-section">
+      <h1>Ai Powered Resume Builder And Reviewer</h1>
+      <p class="sub-title">
+        Empower Your Career with AI: Build, Optimize, and Stand Out with a
+        Winning Resume
+      </p>
+    </section>
+    <section id="projects_1">
+      <h1 class="Headline">Builder</h1>
+
+      <div class="container">
+        <h2>Create Your Resume</h2>
+        <form id="resume-form">
+          <!-- Job Title Section -->
+          <div class="form-group">
+            <label for="job-title">Job Title</label>
+            <input
+              type="text"
+              id="job-title"
+              name="job-title"
+              placeholder="What is the job you are applying for?"
+              required
+            />
+          </div>
+
+          <!-- Job Description Section -->
+          <div class="form-group">
+            <label for="job-description">Job Description</label>
+            <textarea
+              id="job-description"
+              name="job-description"
+              placeholder="Describe the job briefly"
+              rows="4"
+              required
+            ></textarea>
+          </div>
+
+          <!-- Skills Section -->
+          <div class="form-group dropdown-container">
+            <label for="skills">Skills</label>
+
+            <!-- Dropdown toggle -->
+            <div id="dropdown-toggle" class="dropdown-toggle">
+              Select Skills
+            </div>
+
+            <!-- Dropdown list with search -->
+            <div id="dropdown" class="dropdown-list">
+              <input
+                type="text"
+                id="search-skill"
+                placeholder="Search skills"
+              />
+              <ul id="skill-options"></ul>
+            </div>
+
+            <!-- Selected skills -->
+            <div id="selected-skills" class="selected-skills">
+              <p>Selected Skills:</p>
+              <ul id="selected-skills-list"></ul>
+            </div>
+          </div>
+
+          <!-- Projects Section (Optional) -->
+          <div class="form-group">
+            <label for="projects">Projects (Optional)</label>
+            <textarea
+              id="projects"
+              name="projects"
+              placeholder="What has user worked on in the past?"
+              rows="4"
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="experience">Experience</label>
+            <div id="experience-list">
+              <div class="experience-entry">
+                <input
+                  type="text"
+                  class="company-name"
+                  placeholder="Company Name"
+                  required
+                />
+                <input
+                  type="text"
+                  class="job-title"
+                  placeholder="Job Title"
+                  required
+                />
+                <input
+                  type="text"
+                  class="duration"
+                  placeholder="Duration (e.g., Jan 2020 - Dec 2022)"
+                  required
+                />
+                <textarea
+                  class="job-description"
+                  placeholder="Job Description"
+                  required
+                ></textarea>
+              </div>
+            </div>
+            <button id="Exp" type="button" onclick="addExperience()">Add Experience</button>
+            
+            <!-- Experience Table -->
+            <table id="experience-table">
+              <thead>
+                <tr>
+                  <th>Company</th>
+                  <th>Job Title</th>
+                  <th>Duration</th>
+                  <th>Description</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Dynamic rows will be inserted here -->
+              </tbody>
+            </table>
+          </div>
+          
+
+          <!-- Submit Button -->
+          <div class="form-group">
+            <button type="submit">Generate Resume</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section id="projects_2">
+      <h1 class="Headline">Reviewer</h1>
+      <div class="upload-box">
+        <p class="upload-text">
+          Drag and drop your resume here for review, or click to browse your
+          files.
+        </p>
+        <button id="Exp" class="upload-button">Upload</button>
+      </div>
+    </section>
+
+    <section id="contact">
+      <footer>
+        <p>Created and Managed by Zeeshan And Ali</p>
+        <p>AI-powered Resume Builder and Reviewer</p>
+        <p>Last Updated: 14th December 2024</p>
+        <p>
+          Explore the Project on
+          <a
+            id="profile-link"
+            target="_blank"
+            href="https://github.com/Zeeshan506"
+            >GitHub</a
+          >
+        </p>
+        <p>Thank you for checking out our innovative Resume Builder!</p>
+      </footer>
+    </section>
+    <script src="script.js"></script>
+    <script src="dropdownsearch.js"></script>
+    <script src="Validation.js"></script>
+    <script src="ExperienceTable.js"></script>
+    <script src="Theme.js"></script>
+  </body>
+</html>

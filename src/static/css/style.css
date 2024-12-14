@@ -1,0 +1,720 @@
+:root {
+  --color-background: #0f0e17;
+  --color-text: #a7a9be;
+  --color-heading: #fffffe;
+  --color-button: #ff8906;
+  --color-button-text: #fffffe;
+  --color-stroke: black;
+  --color-secondary: #f25f4c;
+  --color-tertiary: #e53170;
+}
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  scrollbar-width: 0.2rem;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  text-align: center;
+  /* overflow: hidden; */
+  background-color: var(--color-background);
+  color: var(--color-text);
+  overflow-x:hidden;
+}
+
+#navbar {
+  display: flex;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 0.3rem 0;
+  border-bottom: 2px double var(--color-button);
+  z-index: 9999;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  font-size: 1.3rem;
+  font-weight: 300;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--color-heading);
+  margin: auto 2rem auto 2rem;
+}
+
+.nav-links a:hover {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--color-button);
+  transition: 0.2s ease-out 0ms;
+}
+
+#theme-toggle {
+  background-color: transparent;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--color-text);
+  cursor: pointer;
+  margin-left: 2rem;
+  transition: color 0.3s ease;
+}
+
+#theme-toggle:hover {
+  color: var(--color-button);
+}
+
+
+section {
+  padding: 70px 0;
+  height: 100vh;
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+h1 {
+  font-size: 6rem;
+  margin-top: 32vh;
+  margin-bottom: -5vh;
+}
+
+.sub-title {
+  font-size: 3rem;
+  font-weight: lighter;
+  font-style: italic;
+  color: var(--color-tertiary);
+}
+
+#projects1,#projects2{
+    height:auto;
+    padding: auto 2.5rem;
+}
+/* Add to the existing CSS file */
+
+#projects_1 {
+  padding: 70px 0;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  height: fit-content;
+}
+
+#projects_1 .container {
+  width: 80%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+#projects_1 h2 {
+  font-size: 3rem;
+  color: var(--color-heading);
+  margin-bottom: 2rem;
+}
+
+#resume-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#resume-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+#resume-form label {
+  font-size: 1.2rem;
+  color: var(--color-heading);
+  margin-bottom: 8px;
+}
+
+#resume-form input,
+#resume-form textarea {
+  font-size: 1.2rem;
+  padding: 10px;
+  border: 2px solid var(--color-stroke);
+  border-radius: 5px;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  transition: border-color 0.3s ease;
+}
+
+#resume-form input:focus,
+#resume-form textarea:focus {
+  border-color: var(--color-button);
+}
+
+#resume-form button[type="submit"] {
+  background-color: var(--color-button);
+  color: var(--color-button-text);
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+#Exp{
+  border-radius: 5px;
+}
+
+#resume-form button[type="submit"]:hover {
+  background-color: var(--color-secondary);
+  border-radius: 5px;
+}
+
+/* Experience section styling */
+#resume-form .form-group #experience-list {
+  display: flex;
+  flex-direction: column;
+}
+
+#resume-form .form-group .experience-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#resume-form .form-group .experience-entry input,
+#resume-form .form-group .experience-entry textarea {
+  border: 2px solid var(--color-stroke);
+}
+
+#resume-form .form-group button {
+  background-color: var(--color-button);
+  color: var(--color-button-text);
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#resume-form .form-group button:hover {
+  background-color: var(--color-secondary);
+}
+
+/* Dynamic Design */
+/* Dropdown container styling */
+.dropdown-container {
+  position: relative;
+  width: 100%;
+}
+
+/* Input field styling */
+#skills {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--color-stroke);
+  border-radius: 5px;
+  outline: none;
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+/* Placeholder color */
+#skills::placeholder {
+  color: var(--color-text);
+  opacity: 0.8;
+}
+
+/* Dropdown list styling */
+.dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--color-background);
+  border: 1px solid var(--color-stroke);
+  border-radius: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+  margin: 5px 0 0;
+  display: none; /* Initially hidden */
+  z-index: 1000;
+}
+
+/* Dropdown list items */
+
+/* Dropdown container */
+.dropdown-container {
+  margin-bottom: 20px;
+}
+
+/* Dropdown toggle */
+#dropdown-toggle {
+  padding: 10px 20px;
+  background-color: var(--color-button);
+  color: var(--color-button-text);
+  font-size: 18px;
+  border-radius: 7px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+#dropdown-toggle:hover {
+  background-color: var(--color-tertiary);
+}
+
+#dropdown-toggle i {
+  font-size: 20px;
+}
+
+/* Dropdown list */
+#dropdown {
+  display: none;
+  position: absolute;
+  background-color: var(--color-background);
+  border-radius: 7px;
+  padding: 10px;
+  margin-top: 5px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+#dropdown.active {
+  display: block;
+}
+
+/* Search input */
+#search-skill {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--color-stroke);
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: var(--color-text);
+}
+
+#search-skill:focus {
+  border-color: var(--color-button);
+  outline: none;
+}
+
+/* Dropdown options */
+#skill-options li {
+  padding: 10px;
+  font-size: 16px;
+  color: var(--color-text);
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#skill-options li:hover, #skill-options li.selected {
+  background-color: var(--color-secondary);
+  color: var(--color-button-text);
+}
+
+/* Selected skills section */
+#selected-skills {
+  margin-top: 15px;
+}
+
+#selected-skills p {
+  font-size: 18px;
+  color: var(--color-heading);
+  margin-bottom: 10px;
+}
+
+#selected-skills-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+#selected-skills-list li {
+  display: inline-block;
+  background-color: var(--color-secondary);
+  color: var(--color-button-text);
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+#selected-skills-list li .remove {
+  color: var(--color-tertiary);
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+#selected-skills-list li .remove:hover {
+  color: var(--color-button);
+}
+
+/* Experience Table */
+#experience-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#experience-table th, #experience-table td {
+  padding: 12px;
+  border: 1px solid var(--color-stroke);
+  text-align: left;
+}
+
+#experience-table th {
+  background-color: var(--color-background);
+  color: var(--color-heading);
+}
+
+#experience-table tr:nth-child(even) {
+  background-color: var(--color-secondary);
+}
+
+#experience-table td button {
+  background-color: var(--color-tertiary);
+  color: var(--color-button-text);
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#experience-table td button:hover {
+  background-color: var(--color-button);
+}
+
+
+
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  #projects_1 h2 {
+    font-size: 2rem;
+  }
+
+  #resume-form label {
+    font-size: 1rem;
+  }
+
+  #resume-form input,
+  #resume-form textarea {
+    font-size: 1rem;
+    padding: 8px;
+  }
+
+  #resume-form button[type="submit"] {
+    font-size: 1rem;
+    padding: 10px 15px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  #projects_1 h2 {
+    font-size: 2.5rem;
+  }
+
+  #resume-form label {
+    font-size: 1.1rem;
+  }
+
+  #resume-form input,
+  #resume-form textarea {
+    font-size: 1.1rem;
+    padding: 10px;
+  }
+
+  #resume-form button[type="submit"] {
+    font-size: 1.1rem;
+    padding: 12px 18px;
+  }
+}
+
+@media (min-width: 1025px) {
+  #projects_1 h2 {
+    font-size: 3rem;
+  }
+
+  #resume-form label {
+    font-size: 1.2rem;
+  }
+
+  #resume-form input,
+  #resume-form textarea {
+    font-size: 1.2rem;
+    padding: 12px;
+  }
+
+  #resume-form button[type="submit"] {
+    font-size: 1.2rem;
+    padding: 14px 20px;
+  }
+}
+
+
+#projects1 .projects,#projects2 .projects {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+  }
+
+#projects_1 .project-tile,#projects_2 .project-tile {
+  width: 450px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+  border: 5px solid var(--color-tertiary);
+  text-decoration: none;
+}
+
+
+
+#projects_1 .project-tile img, #projects_1 .project-tile img  {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Headline {
+  font-size: 5rem;
+  margin-top: 32vh;
+  margin-bottom: 5vh;
+  border-bottom: 2px double var(--color-button);
+  padding-bottom: 5px;
+}
+
+#projects .project-des {
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+#projects .project-tile:hover{
+    font-weight: 600;
+    color:var(--color-button);
+}
+
+#contact{
+    margin:auto;
+    height: 15px;
+}
+footer{
+    border-top: 5px double var(--color-button);
+    border-bottom: 5px double var(--color-button);
+    font-size: 1rem;
+    font-style: italic;
+    background-color: var(--color-background);
+}
+
+.upload-box {
+  width: 80%;
+  height: 300px;
+  border: 3px dashed var(--color-tertiary);
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-background);
+}
+
+.upload-text {
+  font-size: 1.5rem;
+  color: var(--color-text);
+  margin-bottom: 20px;
+}
+
+.upload-button {
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  background-color: var(--color-button);
+  color: var(--color-button-text);
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.upload-button:hover {
+  background-color: var(--color-secondary);
+}
+
+.upload-box:hover {
+  border-color: var(--color-button);
+}
+
+
+
+
+
+
+
+/* For devices with a max width of 600px */
+@media (max-width: 600px) {
+    /* Adjust font sizes */
+    h1 {
+      font-size: 3rem;
+      margin-top: 20vh;
+      margin-bottom: -2vh;
+    }
+  
+    .sub-title {
+      font-size: 1.5rem;
+    }
+  
+    .Headline {
+      font-size: 2.5rem;
+      margin-top: 20vh;
+      margin-bottom: 2vh;
+    }
+  
+    /* Adjust the navbar */
+    .nav-links {
+      flex-direction: column;
+      font-size: 1.1rem;
+    }
+  
+    .nav-links a {
+      margin: 0.5rem 0;
+    }
+  
+    /* Adjust the grid layout to stack */
+    #projects .projects {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      gap: 20px;
+      padding: 10px;
+    }
+  
+    #projects .project-tile {
+      width: 100%;
+      height: auto;
+    }
+  
+    /* Ensure the footer is visible and well-positioned */
+    footer {
+      padding: 15px 0;
+    }
+  }
+
+  
+
+  /* For devices with a width between 601px and 1024px */
+@media (min-width: 601px) and (max-width: 1024px) {
+    /* Adjust font sizes */
+    h1 {
+      font-size: 4rem;
+      margin-top: 25vh;
+      margin-bottom: -3vh;
+    }
+  
+    .sub-title {
+      font-size: 2rem;
+    }
+  
+    .Headline {
+      font-size: 4rem;
+      margin-top: 25vh;
+      margin-bottom: 3vh;
+    }
+  
+    /* Adjust the grid layout */
+    #projects .projects {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+      gap: 20px;
+      padding: 15px;
+    }
+  
+    #projects .project-tile {
+      width: 100%;
+      height: auto;
+    }
+  
+    /* Ensure the footer is well-positioned */
+    footer {
+      padding: 20px 0;
+    }
+  }
+
+  
+/* For devices with a width above 1024px */
+@media (min-width: 1025px) {
+    /* Adjust font sizes */
+    h1 {
+      font-size: 6rem;
+      margin-top: 30vh;
+      margin-bottom: -5vh;
+    }
+  
+    .sub-title {
+      font-size: 2.5rem;
+    }
+  
+    .Headline {
+      font-size: 5rem;
+      margin-top: 32vh;
+      margin-bottom: 5vh;
+    }
+  
+    /* Grid layout remains the same as default */
+    #projects .projects {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+    }
+  
+    /* Footer adjustments */
+    footer {
+      padding: 20px 0;
+    }
+  }
+  
+
+  
+
+  /* Dark Theme Variables */
+.dark-theme {
+  --color-background: #0f0e17;
+  --color-text: #a7a9be;
+  --color-heading: #fffffe;
+  --color-button: #ff8906;
+  --color-button-text: #fffffe;
+  --color-stroke: black;
+  --color-secondary: #f25f4c;
+  --color-tertiary: #e53170;
+}
+
+/* Default light theme (fallback) */
+body {
+  --color-background: #ffffff;
+  --color-text: #333333;
+  --color-heading: #1a1a1a;
+  --color-button: #4caf50;
+  --color-button-text: #ffffff;
+  --color-stroke: #dcdcdc;
+  --color-secondary: #ff9800;
+  --color-tertiary: #f44336;
+}
