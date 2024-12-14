@@ -1,70 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    
-      </style>
-      
-      <main class="home-container">
-        <header class="main-nav">
-          <nav class="nav-content">
-            <h1 class="brand-logo">LOGO</h1>
-            <div class="nav-links">
-              <a href="#build" class="nav-link">Build</a>
-              <a href="#analyze" class="nav-link">Analyze</a>
-              <a href="#contact" class="nav-link">Contact</a>
-              <a href="#about" class="nav-link">About</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Resume Builder & Reviewer</title>
+  </head>
+  <body>
+    <header>
+      <nav id="navbar">
+        <ul class="nav-links">
+          <li class="nav-link"><a href="#welcome-section">Welcome</a></li>
+          <li class="nav-link"><a href="#projects_1">Builder</a></li>
+          <li class="nav-link"><a href="#projects_2">Reviewer</a></li>
+          <li class="nav-link"><a href="#contact">Contact me</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section id="welcome-section">
+      <h1>Ai Powered Resume Builder And Reviewer</h1>
+      <p class="sub-title">
+        Empower Your Career with AI: Build, Optimize, and Stand Out with a
+        Winning Resume
+      </p>
+    </section>
+    <section id="projects_1">
+      <h1 class="Headline">Builder</h1>
+
+      <div class="container">
+        <h2>Create Your Resume</h2>
+        <form id="resume-form">
+          <!-- Job Title Section -->
+          <div class="form-group">
+            <label for="job-title">Job Title</label>
+            <input
+              type="text"
+              id="job-title"
+              name="job-title"
+              placeholder="What is the job you are applying for?"
+              required
+            />
+          </div>
+
+          <!-- Job Description Section -->
+          <div class="form-group">
+            <label for="job-description">Job Description</label>
+            <textarea
+              id="job-description"
+              name="job-description"
+              placeholder="Describe the job briefly"
+              rows="4"
+              required
+            ></textarea>
+          </div>
+
+          <!-- Skills Section -->
+          <div class="form-group dropdown-container">
+            <label for="skills">Skills</label>
+
+            <!-- Dropdown toggle -->
+            <div id="dropdown-toggle" class="dropdown-toggle">
+              Select Skills
             </div>
-          </nav>
-          <div class="nav-separator"></div>
-        </header>
-      
-        <section class="hero-section">
-          <div class="hero-content">
-            <h2 class="hero-title">Build. Analyze. Succeed.</h2>
-            <p class="hero-subtitle">Our intelligent resume builder helps you stand out, analyze your impact, and land your dream job.</p>
-            <div class="cta-container">
-              <button class="cta-button">Build My Resume</button>
-              <button class="cta-button">Analyze My Resume</button>
+
+            <!-- Dropdown list with search -->
+            <div id="dropdown" class="dropdown-list">
+              <input
+                type="text"
+                id="search-skill"
+                placeholder="Search skills"
+              />
+              <ul id="skill-options"></ul>
+            </div>
+
+            <!-- Selected skills -->
+            <div id="selected-skills" class="selected-skills">
+              <p>Selected Skills:</p>
+              <ul id="selected-skills-list"></ul>
             </div>
           </div>
-      
-          <section class="features-section">
-            <article class="feature-card">
-              <div class="feature-content">
-                <h3>Tailored Templates</h3>
-                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/b72cbb0bef1cf2e4db52120208f31c71d9ecc54ffde05e333154e675d1875d73?placeholderIfAbsent=true&apiKey=4085dd5e927e4fd28a18789b5b54eba8" alt="Template selection interface" class="feature-image">
+
+          <!-- Projects Section (Optional) -->
+          <div class="form-group">
+            <label for="projects">Projects (Optional)</label>
+            <textarea
+              id="projects"
+              name="projects"
+              placeholder="What has user worked on in the past?"
+              rows="4"
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="experience">Experience</label>
+            <div id="experience-list">
+              <div class="experience-entry">
+                <input
+                  type="text"
+                  class="company-name"
+                  placeholder="Company Name"
+                  required
+                />
+                <input
+                  type="text"
+                  class="job-title"
+                  placeholder="Job Title"
+                  required
+                />
+                <input
+                  type="text"
+                  class="duration"
+                  placeholder="Duration (e.g., Jan 2020 - Dec 2022)"
+                  required
+                />
+                <textarea
+                  class="job-description"
+                  placeholder="Job Description"
+                  required
+                ></textarea>
               </div>
-              <p class="feature-description">Choose from professionally designed resume templates suited for every industry.</p>
-            </article>
-      
-            <article class="feature-card">
-              <p class="feature-description">Instant feedback to improve your resume's impact and structure.</p>
-              <div class="feature-content">
-                <h3>Real-Time Analysis</h3>
-                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e50590a5915e87b4b74907bafa35a08cf542c87b39b2f5d48ba405f287d07eff?placeholderIfAbsent=true&apiKey=4085dd5e927e4fd28a18789b5b54eba8" alt="Real-time analysis dashboard" class="feature-image">
-              </div>
-            </article>
-      
-            <article class="feature-card">
-              <div class="feature-content">
-                <h3>AI-Powered Insights</h3>
-                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0ca612c3847c44a9622c15337b2087b9d798527d16bce8d416bc46036789ba3a?placeholderIfAbsent=true&apiKey=4085dd5e927e4fd28a18789b5b54eba8" alt="AI analysis visualization" class="feature-image">
-              </div>
-              <p class="feature-description">Identify gaps and strengths in your resume with AI-driven recommendations.</p>
-            </article>
-          </section>
-        </section>
-      
-        <footer class="page-footer">
-          <div class="footer-separator"></div>
-          <p class="footer-text">© 2024 YourPlatform. All Rights Reserved. | Powered by AI privacy-policy</p>
-        </footer>
-      </main>
-</body>
+            </div>
+            <button id="Exp" type="button" onclick="addExperience()">Add Experience</button>
+            
+            <!-- Experience Table -->
+            <table id="experience-table">
+              <thead>
+                <tr>
+                  <th>Company</th>
+                  <th>Job Title</th>
+                  <th>Duration</th>
+                  <th>Description</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Dynamic rows will be inserted here -->
+              </tbody>
+            </table>
+          </div>
+          
+
+          <!-- Submit Button -->
+          <div class="form-group">
+            <button type="submit">Generate Resume</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section id="projects_2">
+      <h1 class="Headline">Reviewer</h1>
+      <div class="upload-box">
+        <p class="upload-text">
+          Drag and drop your resume here for review, or click to browse your
+          files.
+        </p>
+        <button id="Exp" class="upload-button">Upload</button>
+      </div>
+    </section>
+
+    <section id="contact">
+      <footer>
+        <p>Created and Managed by Zeeshan And Ali</p>
+        <p>AI-powered Resume Builder and Reviewer</p>
+        <p>Last Updated: 14th December 2024</p>
+        <p>
+          Explore the Project on
+          <a
+            id="profile-link"
+            target="_blank"
+            href="https://github.com/Zeeshan506"
+            >GitHub</a
+          >
+        </p>
+        <p>Thank you for checking out our innovative Resume Builder!</p>
+      </footer>
+    </section>
+    <script src="script.js"></script>
+    <script src="dropdownsearch.js"></script>
+    <script src="Validation.js"></script>
+    <script src="ExperienceTable.js"></script>
+  </body>
 </html>
