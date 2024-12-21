@@ -1,4 +1,5 @@
-:root {
+ /* Dark Theme Variables */
+ .dark-theme {
   --color-background: #0f0e17;
   --color-text: #a7a9be;
   --color-heading: #fffffe;
@@ -7,6 +8,18 @@
   --color-stroke: black;
   --color-secondary: #f25f4c;
   --color-tertiary: #e53170;
+}
+
+/* Default light theme (fallback) */
+body {
+  --color-background: #ffffff;
+  --color-text: #333333;
+  --color-heading: #1a1a1a;
+  --color-button: #4caf50;
+  --color-button-text: #ffffff;
+  --color-stroke: #dcdcdc;
+  --color-secondary: #ff9800;
+  --color-tertiary: #f44336;
 }
 html {
   font-size: 16px;
@@ -692,29 +705,141 @@ footer{
     }
   }
   
+  /* for job selection reviewer section */
 
-  
+  /* General styles for the dark theme */
 
-  /* Dark Theme Variables */
-.dark-theme {
-  --color-background: #0f0e17;
-  --color-text: #a7a9be;
-  --color-heading: #fffffe;
-  --color-button: #ff8906;
-  --color-button-text: #fffffe;
-  --color-stroke: black;
-  --color-secondary: #f25f4c;
-  --color-tertiary: #e53170;
+/* Wrapper for the whole dropdown component */
+.wrapper {
+  width: 80%;
+  margin: auto;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  background-color: var(--color-background);
+ 
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-/* Default light theme (fallback) */
-body {
-  --color-background: #ffffff;
-  --color-text: #333333;
-  --color-heading: #1a1a1a;
-  --color-button: #4caf50;
-  --color-button-text: #ffffff;
-  --color-stroke: #dcdcdc;
-  --color-secondary: #ff9800;
-  --color-tertiary: #f44336;
+/* The button for the select job title dropdown */
+.select-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 65px;
+  padding: 0 20px;
+  font-size: 22px;
+  background-color: var(--color-button);
+  color: var(--color-button-text);
+  border-radius: 7px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
 }
+
+.select-btn:hover {
+  background: var(--color-tertiary);
+}
+
+.select-btn i {
+  font-size: 31px;
+  transition: transform 0.3s linear;
+}
+
+.wrapper.active .select-btn i {
+  transform: rotate(-180deg);
+}
+
+/* Dropdown content styling */
+.content {
+  display: none;
+  padding: 20px;
+  margin-top: 15px;
+  background: var(--color-background);
+  border-radius: 7px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper.active .content {
+  display: block;
+}
+
+/* Styling for search input */
+.search {
+  position: relative;
+}
+
+.search i {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  color: #999;
+  font-size: 20px;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.search input {
+  height: 50px;
+  width: 80%;
+  padding: 0 20px 0 43px;
+  font-size: 17px;
+  border-radius: 5px;
+  border: 1px solid #B3B3B3;
+  outline: none;
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+.search input:focus {
+  padding-left: 42px;
+  border: 2px solid var(--color-tertiary);
+}
+
+.search input::placeholder {
+  color: #bfbfbf;
+}
+
+/* Styling for the job title options */
+.options {
+  margin-top: 10px;
+  max-height: 250px;
+  padding-right: 7px;
+}
+
+.options li {
+  height: 50px;
+  padding: 0 13px;
+  font-size: 21px;
+  color: var(--color-text);
+  cursor: pointer;
+  list-style: none;
+}
+
+.options li:hover,
+li.selected {
+  background: var(--color-secondary);
+  border-radius: 5px;
+}
+
+/* Scrollbar customization */
+.options::-webkit-scrollbar {
+  width: 7px;
+}
+
+.options::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 25px;
+}
+
+.options::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 25px;
+}
+
+.options::-webkit-scrollbar-thumb:hover {
+  background: #b3b3b3;
+}
+
+
+ 
