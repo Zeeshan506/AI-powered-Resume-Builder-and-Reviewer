@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
     <title>Resume Builder & Reviewer</title>
   </head>
   <body>
@@ -179,10 +179,12 @@
         <p>Thank you for checking out our innovative Resume Builder!</p>
       </footer>
     </section>
-    <script src="script.js"></script>
-    <script src="dropdownsearch.js"></script>
-    <script src="Validation.js"></script>
-    <script src="ExperienceTable.js"></script>
-    <script src="Theme.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/JobTitleSearch.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/Loader&Score.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/dropdownsearch.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/Validation.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/ExperienceTable.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/Theme.js') }}"></script>
   </body>
 </html>
