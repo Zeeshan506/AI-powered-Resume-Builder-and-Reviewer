@@ -153,29 +153,47 @@
 
     <section id="projects_2">
       <h1 class="Headline">Reviewer</h1>
-
-      <!-- Job Title. -->
-      <div class="wrapper">
-        <div class="select-btn">
-          <span>Select Job Title</span>
-          <i class="uil uil-angle-down"></i>
-        </div>
-        <div class="content">
-          <div class="search">
-            <i class="uil uil-search"></i>
-            <input spellcheck="false" type="text" placeholder="Search">
+      <form class="form2" action="/upload" method="POST" enctype="multipart/form-data">
+        <!-- Job Title -->
+        <div class="wrapper">
+          <div class="select-btn">
+            <span>Select Job Title</span>
+            <i class="uil uil-angle-down"></i>
           </div>
-          <ul class="options"></ul>
+          <div class="content">
+            <div class="search">
+              <i class="uil uil-search"></i>
+              <input spellcheck="false" type="text" placeholder="Search" name="job_title">
+            </div>
+            <ul class="options"></ul>
+          </div>
+        </div>
+      
+        <!-- Resume Upload -->
+        <div class="upload-box">
+          <p class="upload-text">
+            Drag and drop your resume here for review, or click to browse your files.
+          </p>
+          <input type="file" id="resumeInput" name="resume" accept=".pdf" style="display: none;" />
+          <button type="button" id="Exp" class="upload-button" onclick="document.getElementById('resumeInput').click();">
+            Upload
+          </button>
+        </div>
+        
+        <button type="submit" class="submit-button">Submit</button>
+      </form>
+      
+      <!-- Loader Section -->
+      <div class="loader-section" id="loaderSection" style="display: none;">
+        <div class="console">
+          <pre id="consoleOutput">Processing...</pre>
         </div>
       </div>
-
-      <!-- ........ -->
-      <div class="upload-box">
-        <p class="upload-text">
-          Drag and drop your resume here for review, or click to browse your
-          files.
-        </p>
-        <button id="Exp" class="upload-button">Upload</button>
+    
+      <!-- Result Section -->
+      <div class="result-section" id="resultSection" style="display: none;">
+        <p>Your Resume Score:</p>
+        <p id="scoreDisplay">Loading...</p>
       </div>
     </section>
 

@@ -1,16 +1,36 @@
-/// Get the elements
+// Get the elements
 const dropdownToggle = document.getElementById('dropdown-toggle');
 const dropdown = document.getElementById('dropdown');
 const searchSkillInput = document.getElementById('search-skill');
 const skillOptions = document.getElementById('skill-options');
 const selectedSkillsList = document.getElementById('selected-skills-list');
+let skills = [];
 
-const skills = [
-  "JavaScript", "Python", "Java", "C++", "PHP", "HTML", "CSS", "React", 
-  "Node.js", "Django", "Flask", "SQL", "MongoDB", "Git", "Docker", 
-  "AWS", "Azure", "Kubernetes", "Go", "Ruby", "Swift", "C#", "TypeScript"
-];
+// Fetch and filter skills as the user types
+searchSkillInput.addEventListener('input', async () => {
+  const searchTerm = searchSkillInput.value.trim();
+  if (searchTerm) {
+    try {
+      const response = await fetch(`/get_skills_by_prefix?search_term=${encodeURIComponent(searchTerm)}`);
+      const data = await response.json();
+      if (data.skills) {
+        displaySkills(data.skills);
+      } else {
+        skillOptions.innerHTML = '<p>Skills not found</p>';
+      }
+    } catch (error) {
+      console.error('Error fetching skills:', error);
+    }
+  } else {
+    skillOptions.innerHTML = '';
+  }
+});
 
+
+
+
+
+  
 // Show or hide the dropdown list when clicking the toggle button
 dropdownToggle.addEventListener('click', () => {
   dropdown.classList.toggle('active');
@@ -23,9 +43,10 @@ function filterSkills(searchTerm) {
 }
 
 // Function to display skills in the dropdown list
+
 function displaySkills(skillsList) {
   skillOptions.innerHTML = '';
-  
+
   if (skillsList.length > 0) {
     skillsList.forEach(skill => {
       const skillItem = document.createElement('li');
@@ -44,13 +65,13 @@ function addSkill(skill) {
   if (!isSkillSelected(skill)) {
     const skillItem = document.createElement('li');
     skillItem.textContent = skill;
-    
+
     // Add a remove button for each selected skill
     const removeButton = document.createElement('span');
     removeButton.textContent = 'x';
     removeButton.classList.add('remove');
     removeButton.addEventListener('click', () => removeSkill(skillItem));
-    
+
     skillItem.appendChild(removeButton);
     selectedSkillsList.appendChild(skillItem);
   }
@@ -77,6 +98,3 @@ searchSkillInput.addEventListener('input', () => {
   const searchTerm = searchSkillInput.value;
   filterSkills(searchTerm);
 });
-
-// Initial display of all skills
-displaySkills(skills);

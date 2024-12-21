@@ -173,7 +173,7 @@ h1 {
   border-color: var(--color-button);
 }
 
-#resume-form button[type="submit"] {
+#resume-form button[type="submit"],.submit-button {
   background-color: var(--color-button);
   color: var(--color-button-text);
   padding: 12px 20px;
@@ -182,6 +182,7 @@ h1 {
   font-size: 1.2rem;
   border-radius: 5px;
   transition: background-color 0.3s ease;
+  margin-top: 1rem;
 }
 #Exp{
   border-radius: 5px;
@@ -842,4 +843,38 @@ li.selected {
 }
 
 
- 
+#resumeInput {
+  display: none; /* Keep the input hidden */
+}
+
+.upload-button {
+  background-color: var(--color-button);
+  color: var(--color-button-text);
+  padding: 12px 20px;
+  border: none;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.upload-button:hover {
+  background-color: var(--color-secondary);
+}
+
+.loader-section,
+.result-section {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.5rem;
+  min-height: 150px; /* Ensure consistent height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.result-section {
+  display: none; /* Initially hidden */
+}
+
+

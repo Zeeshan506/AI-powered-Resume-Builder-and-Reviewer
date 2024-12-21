@@ -7,6 +7,8 @@ import PyPDF2
 import docx
 import pandas as pd
 import string, time
+import os
+import time
 
 
 exclude = string.punctuation
@@ -64,15 +66,27 @@ def extract_text_from_docx(docx_path):
 
 def preprocess_text(text):
     try:
-        cleaned_text = text.str.lower()
-        cleaned_text = cleaned_text.apply(remove_html_tags)
-        cleaned_text = cleaned_text.apply(remove_punctuation)
-        cleaned_text = cleaned_text.apply(remove_urls)
-        cleaned_text = cleaned_text.apply(remove_stopwords)
+        # Convert text to lowercase
+        cleaned_text = text.lower()
+
+        # Remove HTML tags
+        cleaned_text = remove_html_tags(cleaned_text)
+
+        # Remove punctuation
+        cleaned_text = remove_punctuation(cleaned_text)
+
+        # Remove URLs
+        cleaned_text = remove_urls(cleaned_text)
+
+        # Remove stopwords
+        cleaned_text = remove_stopwords(cleaned_text)
+
     except Exception as e:
         print(f"Error occurred while preprocessing text: {e}")
         return text
+    
     return cleaned_text
+
 
 
 
@@ -97,3 +111,64 @@ def remove_stopwords(text):
     x = new_text[:]
     new_text.clear()
     return " ".join(x)
+
+
+
+def get_matching_skills(job_title):
+    """
+    Fetches matching skills based on the given job title from the dataset.
+
+    :param job_title: Job title string to search in the dataset.
+    :return: List of skills related to the job title.
+    """
+    try:
+        # Load the preprocessed skills dataset
+        df = pd.read_csv(r'C:\Users\DELL\Desktop\Projects\DataScience\AI-powered-Resume-Builder-and-Reviewer\data\Preprocessing\Simplified.csv')
+        
+        # Filter the dataset for the given job title and extract the skills
+        job_data = df[df['job_title'].str.lower() == job_title.lower()]
+        
+        # If matching rows are found, extract the skills from all rows
+        if not job_data.empty:
+            skills_list = job_data['skill'].tolist()
+            all_skills = []
+            for skills in skills_list:
+                all_skills.extend(skills.split(','))  # Add all skills from the rows to the list
+            
+            return list(set(all_skills))  # Return unique skills as a list
+        else:
+            return []  # Return empty list if no match is found
+    except Exception as e:
+        print(f"Error fetching matching skills: {e}")
+        return []
+    
+
+def read_text_file(file_path):
+    """
+    Reads and returns the content of a text file.
+
+    :param file_path: Path to the text file to read.
+    :return: The content of the text file as a string.
+    """
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            content = file.read()
+        return content
+    except Exception as e:
+        print(f"Error reading file: {e}")
+        return ""
+
+
+
+
+def generate_unique_filename(original_filename):
+    # Extract the file extension
+    _, file_extension = os.path.splitext(original_filename)
+    
+    # Create a unique identifier based on the current timestamp
+    timestamp = int(time.time())
+    
+    # Construct the new filename
+    new_filename = f"resume_{timestamp}{file_extension}"
+    
+    return new_filename

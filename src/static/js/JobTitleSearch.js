@@ -1,18 +1,15 @@
-// Sample dataset of job titles (replace with your actual dataset)
-const jobTitles = [
-  "Software Engineer",
-  "Data Scientist",
-  "Product Manager",
-  "UX Designer",
-  "Web Developer",
-  "Marketing Specialist",
-  "System Administrator",
-  "Business Analyst",
-  "Quality Assurance Tester",
-  "DevOps Engineer",
-  "HR Manager",
-  "Project Manager"
-];
+let jobTitles = []; // data will be added from dataset
+
+// Fetch job titles from the backend 
+async function loadJobTitles() {
+  try {
+    const response = await fetch('/get_job_titles');
+    const data = await response.json();
+    jobTitles = data.job_titles || []; 
+  } catch (error) {
+    console.error("Error loading job titles:", error);
+  }
+}
 
 // Function to filter job titles based on search input
 function filterJobTitles() {
@@ -39,6 +36,31 @@ function selectJobTitle(title) {
   document.querySelector('.search input').value = title; // Set the input value to selected title
   document.querySelector('.options').innerHTML = ''; // Clear the options list
   toggleDropdown(); // Close the dropdown after selecting a title
+  
+  // Now, submit the resume along with the selected job title
+  const formData = new FormData();
+  const fileInput = document.querySelector('input[type="file"]'); // Assuming there's a file input element
+  const jobTitle = document.querySelector('.search input').value; // Get the selected job title
+  
+  formData.append('resume', fileInput.files[0]);
+  formData.append('job_title', jobTitle); // Append the selected job title
+  
+  // Send the form data to the backend
+  fetch('/upload', {
+    method: 'POST',
+    body: formData,
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.score) {
+      console.log('Score:', data.score); // Handle the response (score) from the backend
+    } else if (data.error) {
+      console.error('Error:', data.error);
+    }
+  })
+  .catch(error => {
+    console.error('Error during file upload:', error);
+  });
 }
 
 // Toggle the visibility of the dropdown
@@ -54,7 +76,8 @@ document.querySelector('.search input').addEventListener('input', filterJobTitle
 document.querySelector('.select-btn').addEventListener('click', toggleDropdown);
 
 // Initialize dropdown with all job titles when the page loads
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadJobTitles(); // Load job titles on page load
   const optionsList = document.querySelector('.options');
   jobTitles.forEach(title => {
     const li = document.createElement('li');
