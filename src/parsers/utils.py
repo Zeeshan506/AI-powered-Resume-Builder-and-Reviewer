@@ -172,3 +172,14 @@ def generate_unique_filename(original_filename):
     new_filename = f"resume_{timestamp}{file_extension}"
     
     return new_filename
+
+def is_passive(sentence):
+    """
+    Basic function to detect passive voice in a sentence.
+
+    :param sentence: A sentence to check for passive voice.
+    :return: True if the sentence contains passive voice, otherwise False.
+    """
+    passive_markers = ["is", "was", "were", "be", "been", "being"]
+    words = sentence.lower().split()
+    return any(marker in words for marker in passive_markers) and "by" in words

@@ -85,11 +85,29 @@ body {
   color: var(--color-button);
 }
 
+.score-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Ensures the text is aligned to the left */
+  justify-content: flex-start;
+  margin-top: 20px; /* Adjust as needed */
+}
+
+.score-item {
+  font-size: 1.2rem;
+  padding: 5px 0;
+  text-align: left; /* Ensures left alignment */
+  width: 100%;
+}
+
 
 section {
   padding: 70px 0;
-  height: 100vh;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 50vh; 
+  height: auto;
 }
 
 h1,
@@ -531,15 +549,23 @@ h1 {
 }
 
 #contact{
-    margin:auto;
-    height: 15px;
+  margin: auto;
+  height: auto;  /* Allow the height to grow based on content */
+  flex-grow: 0;  /* Ensure it does not take more space than needed */
+  display: flex; /* Use flexbox to manage layout */
+  flex-direction: column; /* Stack the content vertically */
+  justify-content: flex-end;
+  
 }
 footer{
-    border-top: 5px double var(--color-button);
-    border-bottom: 5px double var(--color-button);
-    font-size: 1rem;
-    font-style: italic;
-    background-color: var(--color-background);
+  border-top: 5px double var(--color-button);
+  border-bottom: 5px double var(--color-button);
+  font-size: 1rem;
+  font-style: italic;
+  background-color: var(--color-background);
+  text-align: center;
+  padding: 10px;
+  width: 100%; 
 }
 
 .upload-box {
@@ -867,14 +893,74 @@ li.selected {
   text-align: center;
   padding: 20px;
   font-size: 1.5rem;
-  min-height: 150px; /* Ensure consistent height */
+  min-height: 150px; /* Minimum height, will expand if content grows */
+  height: auto; /* Allow the height to adjust based on content */
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%; /* Ensure it takes up full width */
+  box-sizing: border-box; /* Ensure padding does not affect the width */
+  overflow-wrap: break-word; /* Ensure long words break onto the next line */
 }
+
 
 .result-section {
   display: none; /* Initially hidden */
 }
 
+.resume-score-header {
+  text-align: left;  /* Align text to the left */
+  margin-right: 1rem;  /* Add a 1rem margin to the right */
+}
 
+/* Styling the loader and console output */
+#loader {
+  display: none;
+  background-color: #000000; /* Black background */
+  border: 2px solid #00ff00; /* Green border */
+  padding: 20px;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Green glow */
+}
+
+#console {
+  color: #00ff00; /* Green text for console */
+  white-space: pre-wrap; /* Keeps the format of text */
+  font-family: 'Courier New', Courier, monospace; /* Hacker font */
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: left; /* Left justify text */
+  margin: 0;
+  padding: 0;
+}
+
+/* Styling the "Download Resume" button */
+#download-btn {
+  display: none;
+  background-color: #4caf50; /* Green background for button */
+  color: #ffffff; /* White text */
+  padding: 15px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Green glow effect */
+}
+
+#download-btn:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+#download-btn:focus {
+  outline: none;
+}
+
+/* Optional: styling the header of the section */
+#projects_1 h1 {
+  color: #ffffff; /* White for headings */
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 20px;
+}

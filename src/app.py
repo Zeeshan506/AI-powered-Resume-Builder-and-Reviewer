@@ -1,8 +1,14 @@
-from flask import Flask, render_template, request, jsonify
-import os
 from parsers.resume_reviewer import process_resume,calculate_skill_score
 from parsers.utils import generate_unique_filename # Ensure this function exists
+from Builder.resume_builder import generate_resume_content, create_pdf
+from flask import Flask, render_template, request, jsonify
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
 import pandas as pd
+import json
+import os
+
+
 
 dataset_path = pd.read_csv(r'C:\Users\DELL\Desktop\Projects\DataScience\AI-powered-Resume-Builder-and-Reviewer\data\Preprocessing\final_merged_data.csv')
 
@@ -51,14 +57,25 @@ def upload_file():
         filename = generate_unique_filename(file.filename)
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(file_path)
-        print(f"File saved{file_path}")
+        print(f"File saved at {file_path}")
 
         try:
             # Process the resume and get preprocessed file path
             file_path_1 = process_resume(file_path)
-            # Call the scoring function with the job title
-            score = calculate_skill_score(file_path_1, job_title)
-            return jsonify({'score': score})
+            # Call the skill calculation function, which also returns other scores
+            scores = calculate_skill_score(file_path_1, job_title)
+            
+            # Return the breakdown of scores as a JSON response
+            return jsonify({
+                'skill_score': scores['skill_score'],
+                'tone_score': scores['tone_score'],
+                'grammar_score': scores['grammar_score'],
+                'clarity_score': scores['clarity_score'],
+                'projet_score': scores['project_score'],
+                'experience_score': scores['experience_score'],
+                'total_score': scores['total_score']
+                
+            })
         except Exception as e:
             print(f"Error processing file: {e}")
             return jsonify({'error': 'Failed to process resume'}), 500
@@ -112,6 +129,37 @@ def get_job_titles():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+
+
+@app.route('/generate-resume', methods=['POST'])
+def generate_resume():
+    try:
+        # Get the data sent from frontend
+        data = request.get_json()
+
+        job_title = data.get('jobTitle')
+        job_description = data.get('jobDescription')
+        skills = data.get('skills')
+        projects = data.get('projects')
+        experiences = data.get('experiences')
+
+        # Check if the necessary data is provided
+        if not job_title or not job_description or not experiences:
+            return jsonify({"success": False, "error": "Job title, description, or experiences missing."})
+
+        # Generate the content for the resume
+        resume_content = generate_resume_content(job_title, job_description, skills, projects, experiences)
+
+        # Generate the PDF with the resume content
+        pdf_path = 'generated_resume.pdf'
+        create_pdf(resume_content, pdf_path)
+
+        # Return a success response with the URL for the generated PDF
+        return jsonify({"success": True, "pdf_url": pdf_path})
+
+    except Exception as e:
+        # Handle any error and return an error response
+        return jsonify({"success": False, "error": str(e)})
     
     
 if __name__ == '__main__':

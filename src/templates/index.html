@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
     <title>Resume Builder & Reviewer</title>
   </head>
   <body>
@@ -16,10 +19,12 @@
           <li class="nav-link"><a href="#contact">Contact me</a></li>
         </ul>
         <!-- Theme Toggle Button -->
-        <button id="theme-toggle" class="theme-toggle" onclick="toggleTheme()">🌙</button>
+        <button id="theme-toggle" class="theme-toggle" onclick="toggleTheme()">
+          🌙
+        </button>
       </nav>
     </header>
-    
+
     <section id="welcome-section">
       <h1>Ai Powered Resume Builder And Reviewer</h1>
       <p class="sub-title">
@@ -96,35 +101,33 @@
 
           <div class="form-group">
             <label for="experience">Experience</label>
-            <div id="experience-list">
-              <div class="experience-entry">
-                <input
-                  type="text"
-                  class="company-name"
-                  placeholder="Company Name"
-                  required
-                />
-                <input
-                  type="text"
-                  class="job-title"
-                  placeholder="Job Title"
-                  required
-                />
-                <input
-                  type="text"
-                  class="duration"
-                  placeholder="Duration (e.g., Jan 2020 - Dec 2022)"
-                  required
-                />
-                <textarea
-                  class="job-description"
-                  placeholder="Job Description"
-                  required
-                ></textarea>
-              </div>
+            <!-- Experience Entry -->
+            <div class="experience-entry">
+              <input
+                type="text"
+                class="company-name"
+                placeholder="Company Name"
+              />
+              <input type="text" class="job-title" placeholder="Job Title" />
+              <input
+                type="text"
+                class="start-date"
+                placeholder="Start Date (mm/yy)"
+              />
+              <input
+                type="text"
+                class="end-date"
+                placeholder="End Date (mm/yy)"
+              />
+              <textarea
+                class="job-description"
+                placeholder="Job Description"
+              ></textarea>
             </div>
-            <button id="Exp" type="button" onclick="addExperience()">Add Experience</button>
-            
+            <button id="Exp" type="button" onclick="addExperience()">
+              Add Experience
+            </button>
+
             <!-- Experience Table -->
             <table id="experience-table">
               <thead>
@@ -141,7 +144,6 @@
               </tbody>
             </table>
           </div>
-          
 
           <!-- Submit Button -->
           <div class="form-group">
@@ -149,11 +151,30 @@
           </div>
         </form>
       </div>
+      <!-- Loader Section (hidden initially) -->
+      <div id="loader" style="">
+        <h4>Generating your resume...</h4>
+        <pre id="console"></pre>
+      </div>
+
+      <!-- Download Button (hidden initially) -->
+      <button
+        id="download-btn"
+        style=""
+        onclick="downloadResume()"
+      >
+        Download Resume
+      </button>
     </section>
 
     <section id="projects_2">
       <h1 class="Headline">Reviewer</h1>
-      <form class="form2" action="/upload" method="POST" enctype="multipart/form-data">
+      <form
+        class="form2"
+        action="/upload"
+        method="POST"
+        enctype="multipart/form-data"
+      >
         <!-- Job Title -->
         <div class="wrapper">
           <div class="select-btn">
@@ -163,38 +184,58 @@
           <div class="content">
             <div class="search">
               <i class="uil uil-search"></i>
-              <input spellcheck="false" type="text" placeholder="Search" name="job_title">
+              <input
+                spellcheck="false"
+                type="text"
+                placeholder="Search"
+                name="job_title"
+              />
             </div>
             <ul class="options"></ul>
           </div>
         </div>
-      
+
         <!-- Resume Upload -->
         <div class="upload-box">
           <p class="upload-text">
-            Drag and drop your resume here for review, or click to browse your files.
+            Drag and drop your resume here for review, or click to browse your
+            files.
           </p>
-          <input type="file" id="resumeInput" name="resume" accept=".pdf" style="display: none;" />
-          <button type="button" id="Exp" class="upload-button" onclick="document.getElementById('resumeInput').click();">
+          <input
+            type="file"
+            id="resumeInput"
+            name="resume"
+            accept=".pdf"
+            style="display: none"
+          />
+          <button
+            type="button"
+            id="Exp"
+            class="upload-button"
+            onclick="document.getElementById('resumeInput').click();"
+          >
             Upload
           </button>
         </div>
-        
+
         <button type="submit" class="submit-button">Submit</button>
       </form>
-      
+
       <!-- Loader Section -->
-      <div class="loader-section" id="loaderSection" style="display: none;">
+      <div class="loader-section" id="loaderSection" style="display: none">
         <div class="console">
           <pre id="consoleOutput">Processing...</pre>
         </div>
       </div>
-    
+
       <!-- Result Section -->
-      <div class="result-section" id="resultSection" style="display: none;">
-        <p>Your Resume Score:</p>
+      <div class="result-section" id="resultSection" style="display: none">
         <p id="scoreDisplay">Loading...</p>
+        <div class="score-container">
+          <!-- Scores will be dynamically inserted here -->
+        </div>
       </div>
+      <div class="suggestions" id="suggestions" style="display: none"></div>
     </section>
 
     <section id="contact">
@@ -221,5 +262,7 @@
     <script src="{{ url_for('static', filename='js/Validation.js') }}"></script>
     <script src="{{ url_for('static', filename='js/ExperienceTable.js') }}"></script>
     <script src="{{ url_for('static', filename='js/Theme.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/job_date.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/download.js') }}"></script>
   </body>
 </html>
