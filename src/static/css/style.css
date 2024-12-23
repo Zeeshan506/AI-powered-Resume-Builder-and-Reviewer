@@ -938,6 +938,11 @@ li.selected {
 /* Styling the "Download Resume" button */
 #download-btn {
   display: none;
+}
+
+#download-btn button {
+  
+
   background-color: #4caf50; /* Green background for button */
   color: #ffffff; /* White text */
   padding: 15px 30px;
@@ -947,11 +952,19 @@ li.selected {
   cursor: pointer;
   transition: background-color 0.3s;
   box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Green glow effect */
+  width: 80%;
+  margin:auto;
+  margin-top: 1rem;
+
 }
 
-#download-btn:hover {
-  background-color: #45a049; /* Darker green on hover */
+
+#download-btn button{
+  background-color: #45a049; /* Darker green on active */
+
+
 }
+
 
 #download-btn:focus {
   outline: none;

@@ -1,0 +1,33 @@
+job_title = "Software Engineer"
+job_description = """As a Software Engineer, responsible for designing, developing, and maintaining software applications. 
+Worked closely with cross-functional teams to define software requirements, 
+create efficient algorithms, and ensure the software is user-friendly, scalable, and robust. 
+Collaborated in Agile teams and contributed to code reviews, unit testing, and documentation."""
+skills = [
+    "Python", "JavaScript", "C++", "SQL", "Machine Learning", "Agile", "Data Structures", "Algorithms",
+    "Problem-Solving", "Version Control (Git)"
+]
+projects = """Developed a machine learning application that predicts stock market trends using time-series data analysis.
+Created a web application for project management that improved team productivity by 30%.
+Built a recommendation system for e-commerce that increased sales by 15%."""
+experiences = [
+    {
+        "company": "Tech Innovators Inc.",
+        "title": "Software Engineer",
+        "startDate": "January 2022",
+        "endDate": "Present",
+        "description": """Developed and maintained scalable web applications in Python and JavaScript. 
+Collaborated with front-end teams to integrate APIs and improve user interface functionality. 
+Wrote unit tests and conducted code reviews to ensure high-quality code. Contributed to the design and implementation of a new microservices architecture."""
+    },
+    {
+        "company": "Code Labs",
+        "title": "Junior Software Developer",
+        "startDate": "June 2020",
+        "endDate": "December 2021",
+        "description": """Assisted in the development of a cloud-based data analytics platform. 
+Optimized database queries and improved application performance by 20%. 
+Wrote and maintained documentation for the software development processes. 
+Participated in weekly sprint meetings and contributed to planning and estimating tasks."""
+    }
+]

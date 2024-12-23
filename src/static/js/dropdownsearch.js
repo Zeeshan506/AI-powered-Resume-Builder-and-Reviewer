@@ -5,32 +5,51 @@ const searchSkillInput = document.getElementById('search-skill');
 const skillOptions = document.getElementById('skill-options');
 const selectedSkillsList = document.getElementById('selected-skills-list');
 let skills = [];
+let currentRequestController = null; // Track the current request's AbortController
+
+// Function to debounce the search input
+function debounce(func, delay) {
+  let timeout;
+  return function (...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), delay);
+  };
+}
 
 // Fetch and filter skills as the user types
-searchSkillInput.addEventListener('input', async () => {
-  const searchTerm = searchSkillInput.value.trim();
-  if (searchTerm) {
-    try {
-      const response = await fetch(`/get_skills_by_prefix?search_term=${encodeURIComponent(searchTerm)}`);
-      const data = await response.json();
-      if (data.skills) {
-        displaySkills(data.skills);
-      } else {
-        skillOptions.innerHTML = '<p>Skills not found</p>';
-      }
-    } catch (error) {
+const fetchSkills = async (searchTerm) => {
+  if (currentRequestController) {
+    // Abort the previous request if it exists
+    currentRequestController.abort();
+  }
+
+  currentRequestController = new AbortController(); // Create a new controller for the new request
+
+  const { signal } = currentRequestController; // Extract the signal to pass to fetch
+
+  try {
+    const response = await fetch(`/get_skills_by_prefix?search_term=${encodeURIComponent(searchTerm)}`, {
+      signal, // Pass the signal to cancel the request
+    });
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    const data = await response.json();
+
+    if (data.skills) {
+      displaySkills(data.skills);
+    } else {
+      skillOptions.innerHTML = '<p>Skills not found</p>';
+    }
+  } catch (error) {
+    if (error.name !== 'AbortError') {
       console.error('Error fetching skills:', error);
     }
-  } else {
-    skillOptions.innerHTML = '';
   }
-});
+};
 
-
-
-
-
-  
 // Show or hide the dropdown list when clicking the toggle button
 dropdownToggle.addEventListener('click', () => {
   dropdown.classList.toggle('active');
@@ -43,7 +62,6 @@ function filterSkills(searchTerm) {
 }
 
 // Function to display skills in the dropdown list
-
 function displaySkills(skillsList) {
   skillOptions.innerHTML = '';
 
@@ -94,7 +112,11 @@ function removeSkill(skillItem) {
 }
 
 // Listen for search input changes and filter skills
-searchSkillInput.addEventListener('input', () => {
-  const searchTerm = searchSkillInput.value;
-  filterSkills(searchTerm);
-});
+searchSkillInput.addEventListener('input', debounce(async () => {
+  const searchTerm = searchSkillInput.value.trim();
+  if (searchTerm) {
+    await fetchSkills(searchTerm);
+  } else {
+    skillOptions.innerHTML = '';
+  }
+}, 300)); // Adding a 300ms debounce to limit the number of requests

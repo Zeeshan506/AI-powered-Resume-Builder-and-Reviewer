@@ -59,7 +59,7 @@ def create_pdf(resume_content, pdf_path):
     
     
 
-api_key = ""
+api_key = "AIzaSyDHcWLsDv5REcL54DBAcdSiiQKqtgWeTIU""
 genai.configure(api_key=api_key)
 
 generation_config = {

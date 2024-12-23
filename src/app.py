@@ -1,27 +1,30 @@
 from parsers.resume_reviewer import process_resume,calculate_skill_score
 from parsers.utils import generate_unique_filename # Ensure this function exists
 from Builder.resume_builder import generate_resume_content, create_pdf
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify,send_from_directory,send_file
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 import pandas as pd
 import json
 import os
+import time
 
 
 
 dataset_path = pd.read_csv(r'C:\Users\DELL\Desktop\Projects\DataScience\AI-powered-Resume-Builder-and-Reviewer\data\Preprocessing\final_merged_data.csv')
+UPLOAD_FOLDER = r'C:\Users\DELL\Desktop\Projects\DataScience\AI-powered-Resume-Builder-and-Reviewer\src\data\generated_resumes'
+
 
 
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
-
 
     
 # Configure upload folder and allowed file extensions
 UPLOAD_FOLDER = './data/resumes'
 ALLOWED_EXTENSIONS = {'pdf'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # Ensure the upload folder exists
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -134,8 +137,9 @@ def get_job_titles():
 @app.route('/generate-resume', methods=['POST'])
 def generate_resume():
     try:
-        # Get the data sent from frontend
+        # Get the data sent from the frontend
         data = request.get_json()
+        print("Received data:", data)  # Debugging log
 
         job_title = data.get('jobTitle')
         job_description = data.get('jobDescription')
@@ -150,17 +154,31 @@ def generate_resume():
         # Generate the content for the resume
         resume_content = generate_resume_content(job_title, job_description, skills, projects, experiences)
 
-        # Generate the PDF with the resume content
-        pdf_path = 'generated_resume.pdf'
+        # Create the PDF
+        pdf_filename = f'resume_{int(time.time())}.pdf'
+        pdf_path = os.path.join('data', 'generated_resumes', pdf_filename)
+
+        # Ensure the directory exists
+        os.makedirs(os.path.dirname(pdf_path), exist_ok=True)
+
+        # Generate the PDF
         create_pdf(resume_content, pdf_path)
 
         # Return a success response with the URL for the generated PDF
-        return jsonify({"success": True, "pdf_url": pdf_path})
+        return jsonify({"success": True, "pdf_url": f"/download/{pdf_filename}"})
 
     except Exception as e:
-        # Handle any error and return an error response
         return jsonify({"success": False, "error": str(e)})
-    
+
+@app.route('/download/<filename>', methods=['GET'])
+def download_file(filename):
+    file_path = os.path.join('data', 'generated_resumes', filename)
+    if os.path.exists(file_path):
+        return send_file(file_path, as_attachment=True)
+    else:
+        return jsonify({"success": False, "error": "File not found"}), 404
+
+
     
 if __name__ == '__main__':
     app.run(debug=True)

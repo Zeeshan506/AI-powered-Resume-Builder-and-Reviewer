@@ -147,24 +147,20 @@
 
           <!-- Submit Button -->
           <div class="form-group">
-            <button type="submit">Generate Resume</button>
+            <button type="submit" id="submit-btn">Generate Resume</button>
           </div>
         </form>
       </div>
       <!-- Loader Section (hidden initially) -->
-      <div id="loader" style="">
+      <div id="loader">
         <h4>Generating your resume...</h4>
         <pre id="console"></pre>
       </div>
 
       <!-- Download Button (hidden initially) -->
-      <button
-        id="download-btn"
-        style=""
-        onclick="downloadResume()"
-      >
-        Download Resume
-      </button>
+      <a id="download-btn"   href="#" download="resume.pdf">
+        <button>Download Resume</button>
+      </a>
     </section>
 
     <section id="projects_2">
@@ -257,12 +253,12 @@
     </section>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script src="{{ url_for('static', filename='js/JobTitleSearch.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/Loader&Score.js') }}"></script>
     <script src="{{ url_for('static', filename='js/dropdownsearch.js') }}"></script>
     <script src="{{ url_for('static', filename='js/Validation.js') }}"></script>
     <script src="{{ url_for('static', filename='js/ExperienceTable.js') }}"></script>
     <script src="{{ url_for('static', filename='js/Theme.js') }}"></script>
     <script src="{{ url_for('static', filename='js/job_date.js') }}"></script>
     <script src="{{ url_for('static', filename='js/download.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/builder.js') }}"></script>
   </body>
 </html>
