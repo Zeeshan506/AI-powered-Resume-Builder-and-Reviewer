@@ -1,264 +1,289 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/style.css') }}"
-    />
-    <title>Resume Builder & Reviewer</title>
-  </head>
-  <body>
-    <header>
-      <nav id="navbar">
-        <ul class="nav-links">
-          <li class="nav-link"><a href="#welcome-section">Welcome</a></li>
-          <li class="nav-link"><a href="#projects_1">Builder</a></li>
-          <li class="nav-link"><a href="#projects_2">Reviewer</a></li>
-          <li class="nav-link"><a href="#contact">Contact me</a></li>
-        </ul>
-        <!-- Theme Toggle Button -->
-        <button id="theme-toggle" class="theme-toggle" onclick="toggleTheme()">
-          🌙
-        </button>
-      </nav>
-    </header>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../static/css/style.css" />
+        <title>Resume Builder & Reviewer</title>
+    </head>
+    <body>
+        <header>
+            <nav id="navbar">
+                <ul class="nav-links">
+                    <li class="nav-link">
+                        <a href="#welcome-section">Welcome</a>
+                    </li>
+                    <li class="nav-link"><a href="#projects_1">Builder</a></li>
+                    <li class="nav-link"><a href="#projects_2">Reviewer</a></li>
+                    <li class="nav-link"><a href="#contact">Contact me</a></li>
+                </ul>
+                <!-- Theme Toggle Button -->
+                <button
+                    id="theme-toggle"
+                    class="theme-toggle"
+                    onclick="toggleTheme()"
+                >
+                    🌙
+                </button>
+            </nav>
+        </header>
 
-    <section id="welcome-section">
-      <h1>Ai Powered Resume Builder And Reviewer</h1>
-      <p class="sub-title">
-        Empower Your Career with AI: Build, Optimize, and Stand Out with a
-        Winning Resume
-      </p>
-    </section>
-    <section id="projects_1">
-      <h1 class="Headline">Builder</h1>
+        <section id="welcome-section">
+            <h1>Ai Powered Resume Builder And Reviewer</h1>
+            <p class="sub-title">
+                Empower Your Career with AI: Build, Optimize, and Stand Out with
+                a Winning Resume
+            </p>
+        </section>
+        <section id="projects_1">
+            <h1 class="Headline">Builder</h1>
 
-      <div class="container">
-        <h2>Create Your Resume</h2>
-        <form id="resume-form">
-          <!-- Job Title Section -->
-          <div class="form-group">
-            <label for="job-title">Job Title</label>
-            <input
-              type="text"
-              id="job-title"
-              name="job-title"
-              placeholder="What is the job you are applying for?"
-              required
-            />
-          </div>
+            <div class="container">
+                <h2>Create Your Resume</h2>
+                <form id="resume-form">
+                    <!-- Job Title Section -->
+                    <div class="form-group">
+                        <label for="job-title">Job Title</label>
+                        <input
+                            type="text"
+                            id="job-title"
+                            name="job-title"
+                            placeholder="What is the job you are applying for?"
+                            required
+                        />
+                    </div>
 
-          <!-- Job Description Section -->
-          <div class="form-group">
-            <label for="job-description">Job Description</label>
-            <textarea
-              id="job-description"
-              name="job-description"
-              placeholder="Describe the job briefly"
-              rows="4"
-              required
-            ></textarea>
-          </div>
+                    <!-- Job Description Section -->
+                    <div class="form-group">
+                        <label for="job-description">Job Description</label>
+                        <textarea
+                            id="job-description"
+                            name="job-description"
+                            placeholder="Describe the job briefly"
+                            rows="4"
+                            required
+                        ></textarea>
+                    </div>
 
-          <!-- Skills Section -->
-          <div class="form-group dropdown-container">
-            <label for="skills">Skills</label>
+                    <!-- Skills Section -->
+                    <div class="form-group dropdown-container">
+                        <label for="skills">Skills</label>
 
-            <!-- Dropdown toggle -->
-            <div id="dropdown-toggle" class="dropdown-toggle">
-              Select Skills
+                        <!-- Dropdown toggle -->
+                        <div id="dropdown-toggle" class="dropdown-toggle">
+                            Select Skills
+                        </div>
+
+                        <!-- Dropdown list with search -->
+                        <div id="dropdown" class="dropdown-list">
+                            <input
+                                type="text"
+                                id="search-skill"
+                                placeholder="Search skills"
+                            />
+                            <ul id="skill-options"></ul>
+                        </div>
+
+                        <!-- Selected skills -->
+                        <div id="selected-skills" class="selected-skills">
+                            <p>Selected Skills:</p>
+                            <ul id="selected-skills-list"></ul>
+                        </div>
+                    </div>
+
+                    <!-- Projects Section (Optional) -->
+                    <div class="form-group">
+                        <label for="projects">Projects (Optional)</label>
+                        <textarea
+                            id="projects"
+                            name="projects"
+                            placeholder="What has user worked on in the past?"
+                            rows="4"
+                        ></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="experience">Experience</label>
+                        <!-- Experience Entry -->
+                        <div class="experience-entry">
+                            <input
+                                type="text"
+                                class="company-name"
+                                placeholder="Company Name"
+                            />
+                            <input
+                                type="text"
+                                class="job-title"
+                                placeholder="Job Title"
+                            />
+                            <input
+                                type="text"
+                                class="start-date"
+                                placeholder="Start Date (mm/yy)"
+                            />
+                            <input
+                                type="text"
+                                class="end-date"
+                                placeholder="End Date (mm/yy)"
+                            />
+                            <textarea
+                                class="job-description"
+                                placeholder="Job Description"
+                            ></textarea>
+                        </div>
+                        <button
+                            id="Exp"
+                            type="button"
+                            onclick="addExperience()"
+                        >
+                            Add Experience
+                        </button>
+
+                        <!-- Experience Table -->
+                        <table id="experience-table">
+                            <thead>
+                                <tr>
+                                    <th>Company</th>
+                                    <th>Job Title</th>
+                                    <th>Duration</th>
+                                    <th>Description</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Dynamic rows will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-group">
+                        <button type="submit" id="submit-btn">
+                            Generate Resume
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <!-- Loader Section (hidden initially) -->
+            <div id="loader">
+                <h4>Generating your resume...</h4>
+                <pre id="console"></pre>
             </div>
 
-            <!-- Dropdown list with search -->
-            <div id="dropdown" class="dropdown-list">
-              <input
-                type="text"
-                id="search-skill"
-                placeholder="Search skills"
-              />
-              <ul id="skill-options"></ul>
+            <!-- Download Button (hidden initially) -->
+            <a id="download-btn" href="#" download="resume.pdf">
+                <button>Download Resume</button>
+            </a>
+        </section>
+
+        <section id="projects_2">
+            <h1 class="Headline">Reviewer</h1>
+            <form
+                class="form2"
+                action="/upload"
+                method="POST"
+                enctype="multipart/form-data"
+            >
+                <!-- Job Title -->
+                <div class="wrapper">
+                    <div class="select-btn">
+                        <span>Select Job Title</span>
+                        <i class="uil uil-angle-down"></i>
+                    </div>
+                    <div class="content">
+                        <div class="search">
+                            <i class="uil uil-search"></i>
+                            <input
+                                spellcheck="false"
+                                type="text"
+                                placeholder="Search"
+                                name="job_title"
+                            />
+                        </div>
+                        <ul class="options"></ul>
+                    </div>
+                </div>
+
+                <!-- Resume Upload -->
+                <div class="upload-box">
+                    <p class="upload-text">
+                        Drag and drop your resume here for review, or click to
+                        browse your files.
+                    </p>
+                    <input
+                        type="file"
+                        id="resumeInput"
+                        name="resume"
+                        accept=".pdf"
+                        style="display: none"
+                    />
+                    <button
+                        type="button"
+                        id="Exp"
+                        class="upload-button"
+                        onclick="document.getElementById('resumeInput').click()"
+                    >
+                        Upload
+                    </button>
+                </div>
+
+                <button type="submit" class="submit-button">Submit</button>
+            </form>
+
+            <!-- Loader Section -->
+            <div
+                class="loader-section"
+                id="loaderSection"
+                style="display: none"
+            >
+                <div class="console">
+                    <pre id="consoleOutput">Processing...</pre>
+                </div>
             </div>
 
-            <!-- Selected skills -->
-            <div id="selected-skills" class="selected-skills">
-              <p>Selected Skills:</p>
-              <ul id="selected-skills-list"></ul>
+            <!-- Result Section -->
+            <div
+                class="result-section"
+                id="resultSection"
+                style="display: none"
+            >
+                <p id="scoreDisplay">Loading...</p>
+                <div class="score-container">
+                    <!-- Scores will be dynamically inserted here -->
+                </div>
             </div>
-          </div>
+            <div
+                class="suggestions"
+                id="suggestions"
+                style="display: none"
+            ></div>
+        </section>
 
-          <!-- Projects Section (Optional) -->
-          <div class="form-group">
-            <label for="projects">Projects (Optional)</label>
-            <textarea
-              id="projects"
-              name="projects"
-              placeholder="What has user worked on in the past?"
-              rows="4"
-            ></textarea>
-          </div>
-
-          <div class="form-group">
-            <label for="experience">Experience</label>
-            <!-- Experience Entry -->
-            <div class="experience-entry">
-              <input
-                type="text"
-                class="company-name"
-                placeholder="Company Name"
-              />
-              <input type="text" class="job-title" placeholder="Job Title" />
-              <input
-                type="text"
-                class="start-date"
-                placeholder="Start Date (mm/yy)"
-              />
-              <input
-                type="text"
-                class="end-date"
-                placeholder="End Date (mm/yy)"
-              />
-              <textarea
-                class="job-description"
-                placeholder="Job Description"
-              ></textarea>
-            </div>
-            <button id="Exp" type="button" onclick="addExperience()">
-              Add Experience
-            </button>
-
-            <!-- Experience Table -->
-            <table id="experience-table">
-              <thead>
-                <tr>
-                  <th>Company</th>
-                  <th>Job Title</th>
-                  <th>Duration</th>
-                  <th>Description</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Dynamic rows will be inserted here -->
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Submit Button -->
-          <div class="form-group">
-            <button type="submit" id="submit-btn">Generate Resume</button>
-          </div>
-        </form>
-      </div>
-      <!-- Loader Section (hidden initially) -->
-      <div id="loader">
-        <h4>Generating your resume...</h4>
-        <pre id="console"></pre>
-      </div>
-
-      <!-- Download Button (hidden initially) -->
-      <a id="download-btn"   href="#" download="resume.pdf">
-        <button>Download Resume</button>
-      </a>
-    </section>
-
-    <section id="projects_2">
-      <h1 class="Headline">Reviewer</h1>
-      <form
-        class="form2"
-        action="/upload"
-        method="POST"
-        enctype="multipart/form-data"
-      >
-        <!-- Job Title -->
-        <div class="wrapper">
-          <div class="select-btn">
-            <span>Select Job Title</span>
-            <i class="uil uil-angle-down"></i>
-          </div>
-          <div class="content">
-            <div class="search">
-              <i class="uil uil-search"></i>
-              <input
-                spellcheck="false"
-                type="text"
-                placeholder="Search"
-                name="job_title"
-              />
-            </div>
-            <ul class="options"></ul>
-          </div>
-        </div>
-
-        <!-- Resume Upload -->
-        <div class="upload-box">
-          <p class="upload-text">
-            Drag and drop your resume here for review, or click to browse your
-            files.
-          </p>
-          <input
-            type="file"
-            id="resumeInput"
-            name="resume"
-            accept=".pdf"
-            style="display: none"
-          />
-          <button
-            type="button"
-            id="Exp"
-            class="upload-button"
-            onclick="document.getElementById('resumeInput').click();"
-          >
-            Upload
-          </button>
-        </div>
-
-        <button type="submit" class="submit-button">Submit</button>
-      </form>
-
-      <!-- Loader Section -->
-      <div class="loader-section" id="loaderSection" style="display: none">
-        <div class="console">
-          <pre id="consoleOutput">Processing...</pre>
-        </div>
-      </div>
-
-      <!-- Result Section -->
-      <div class="result-section" id="resultSection" style="display: none">
-        <p id="scoreDisplay">Loading...</p>
-        <div class="score-container">
-          <!-- Scores will be dynamically inserted here -->
-        </div>
-      </div>
-      <div class="suggestions" id="suggestions" style="display: none"></div>
-    </section>
-
-    <section id="contact">
-      <footer>
-        <p>Created and Managed by Zeeshan And Ali</p>
-        <p>AI-powered Resume Builder and Reviewer</p>
-        <p>Last Updated: 14th December 2024</p>
-        <p>
-          Explore the Project on
-          <a
-            id="profile-link"
-            target="_blank"
-            href="https://github.com/Zeeshan506"
-            >GitHub</a
-          >
-        </p>
-        <p>Thank you for checking out our innovative Resume Builder!</p>
-      </footer>
-    </section>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/JobTitleSearch.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/dropdownsearch.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/Validation.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/ExperienceTable.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/Theme.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/job_date.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/download.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/builder.js') }}"></script>
-  </body>
+        <section id="contact">
+            <footer>
+                <p>Created and Managed by Zeeshan And Ali</p>
+                <p>AI-powered Resume Builder and Reviewer</p>
+                <p>Last Updated: 14th December 2024</p>
+                <p>
+                    Explore the Project on
+                    <a
+                        id="profile-link"
+                        target="_blank"
+                        href="https://github.com/Zeeshan506"
+                        >GitHub</a
+                    >
+                </p>
+                <p>Thank you for checking out our innovative Resume Builder!</p>
+            </footer>
+        </section>
+        <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/JobTitleSearch.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/dropdownsearch.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/Validation.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/ExperienceTable.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/Theme.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/job_date.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/download.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/builder.js') }}"></script>
+    </body>
 </html>
