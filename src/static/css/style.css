@@ -977,3 +977,144 @@ li.selected {
   font-size: 36px;
   margin-bottom: 20px;
 }
+
+/* --- UI polish overrides --- */
+body {
+  --color-surface: #f7f9fc;
+  --color-card: #ffffff;
+  --color-muted: #6b7280;
+}
+
+body.dark-theme {
+  --color-surface: #111827;
+  --color-card: #1f2937;
+  --color-muted: #c0c6d4;
+}
+
+#welcome-section,
+#projects_1,
+#projects_2 {
+  background: var(--color-surface);
+}
+
+#welcome-section {
+  min-height: 70vh;
+  justify-content: center;
+  padding: 96px 1rem 40px;
+}
+
+h1 {
+  margin: 0;
+}
+
+.sub-title {
+  max-width: 900px;
+  margin: 1.2rem auto 0;
+  font-size: clamp(1.2rem, 2vw, 2rem);
+  line-height: 1.5;
+}
+
+#projects_1 .container,
+.form2 {
+  width: min(980px, 92%);
+  margin: 0 auto;
+  background: var(--color-card);
+  border: 1px solid var(--color-stroke);
+  border-radius: 14px;
+  padding: 1.25rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.Headline {
+  margin-top: 6rem;
+  margin-bottom: 1.5rem;
+  font-size: clamp(2rem, 5vw, 4rem);
+}
+
+#resume-form input,
+#resume-form textarea,
+.search input {
+  border-radius: 10px;
+}
+
+#resume-form input:focus,
+#resume-form textarea:focus,
+.search input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 137, 6, 0.25);
+}
+
+#resume-form button[type="submit"],
+.submit-button,
+.upload-button,
+#Exp,
+#download-btn button {
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+#experience-table th {
+  background-color: var(--color-card);
+}
+
+#experience-table tr:nth-child(even) {
+  background-color: transparent;
+}
+
+#experience-table td,
+#experience-table th {
+  font-size: 0.95rem;
+}
+
+.upload-box {
+  border-radius: 14px;
+  background: var(--color-card);
+}
+
+.upload-text {
+  color: var(--color-muted);
+}
+
+.loader-section,
+.result-section {
+  background: var(--color-card);
+  border: 1px solid var(--color-stroke);
+  border-radius: 12px;
+  width: min(980px, 92%);
+  margin: 1rem auto 0;
+}
+
+#scoreDisplay {
+  width: 100%;
+  margin: 0;
+  text-align: left;
+  color: var(--color-heading);
+}
+
+#navbar {
+  backdrop-filter: blur(6px);
+}
+
+@media (max-width: 768px) {
+  #navbar {
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 0.55rem 0.35rem;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 1rem;
+    margin: 0.3rem 0;
+    padding: 0;
+  }
+
+  .nav-links a {
+    margin: 0.25rem 0.75rem;
+  }
+
+  #theme-toggle {
+    margin-left: 0;
+  }
+}
