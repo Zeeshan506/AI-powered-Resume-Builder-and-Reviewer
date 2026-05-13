@@ -76,7 +76,7 @@ When you share the dataset source link, put it in this README under a new sectio
 
 ```md
 ## Dataset source
-<your link here>
+https://www.kaggle.com/datasets/suriyaganesh/resume-dataset-structured
 ```
 
 ---
